@@ -14,6 +14,10 @@ const SignUp = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSignUp = () => {
+    if (!username || !role || !email || !password) {
+      enqueueSnackbar("Please fill out all fields", { variant: "error" });
+      return;
+    }
     axios
       .post("https://final-project-mnc7.onrender.com/health/api/auth/signup", {
         username,
@@ -32,7 +36,7 @@ const SignUp = () => {
 
       .catch((error) => {
         enqueueSnackbar("Sign Up faild", { variant: "error" });
-        console.log(error);
+        console.log("Error details", error.response);
       });
   };
 
@@ -62,7 +66,7 @@ const SignUp = () => {
         <div className="my-4">
           <label className="mx-4 mr-4">Email</label>
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="px-4 py-2"
@@ -72,7 +76,7 @@ const SignUp = () => {
         <div className="my-4">
           <label className="mx-3 mr-4">Password</label>
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="px-4 py-2"
