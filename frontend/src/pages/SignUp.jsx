@@ -15,7 +15,7 @@ const SignUp = () => {
 
   const handleSignUp = () => {
     axios
-      .post("http://localhost:5559/api/auth/signup", {
+      .post("https://final-project-mnc7.onrender.com/health/api/auth/signup", {
         username,
         role,
         email,
